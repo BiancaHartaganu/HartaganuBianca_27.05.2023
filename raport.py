@@ -4,7 +4,6 @@ import HtmlTestRunner
 from proiectaboutyou import Login
 
 
-
 class TestSuite(unittest.TestCase):
 
     def test_suite(self):
