@@ -26,9 +26,9 @@ class Login(unittest.TestCase):
         self.chrome.implicitly_wait(3)
         sleep(2)
         self.chrome.find_element(By.CSS_SELECTOR, "#onetrust-accept-btn-handler").click()
-        # element = WebDriverWait(self.chrome, 3).until(EC.visibility_of_element_located(self.FORM_AUTHENTICATION))
-        # element.click()
-        # element2 = WebDriverWait(self.chrome, 3).until(EC.visibility_of_element_located(self.FORM_AUTHENTICATION2))
+        #element = WebDriverWait(self.chrome, 3).until(EC.visibility_of_element_located(self.FORM_AUTHENTICATION))
+        #element.click()
+        #element2 = WebDriverWait(self.chrome, 3).until(EC.visibility_of_element_located(self.FORM_AUTHENTICATION2))
         #element2.click()
 
     def setUpWithoutLoginModal(self):
@@ -71,18 +71,13 @@ class Login(unittest.TestCase):
         expected_url = "https://www.aboutyou.ro/?loginFlow=login"
         assert self.chrome.current_url != expected_url
 
-    def test_6_verificare_capcha(self): #am verificat daca apare mesajul la introducerea gresita a datelor de login
-        sleep(1)
+    def test_6_verificare_capcha(self):
         self.chrome.find_element(By.CLASS_NAME, "li167jd").click()
-        sleep(2)
         WebDriverWait(self.chrome, 3).until(EC.visibility_of_element_located(self.FORM_AUTHENTICATION2)).click()
-        sleep(1)
         self.chrome.find_element(By.CSS_SELECTOR, "div.sc-4wvktd-3:nth-child(1) > label:nth-child(1)").send_keys("aaa@yahoo.com")#am introdus adresa de mail gresita
-        sleep(1)
         self.chrome.find_element(By.CSS_SELECTOR, "div.sc-4wvktd-3:nth-child(2) > label:nth-child(1)").send_keys("aaa")#am introdus parola gresita
-        sleep(1)
         self.chrome.find_element(By.XPATH, "//span[@class='sc-iprg3j-1 jPkEJg'][normalize-space()='Logare']").click()#am dat click pe login
-        sleep(2)
+        sleep(1)
         try:
             self.chrome.find_element(By.XPATH,'//span[contains(text(),"e-mail") and @class="sc-qywjzy-1 kCVWSN"]')
             assert False, "Logarea a fost efectuata, desi nu am bifat capcha"
@@ -125,15 +120,10 @@ class Login(unittest.TestCase):
         sleep(2)
 
     def test_10_schimbare_tara_site(self):#aici am verificat daca se poate schimba tara de origine a site-ului
-
-        # self.chrome.find_element(By.CSS_SELECTOR, "svg.sc-1ahb4we-0:nth-child(2)").click()
-        # sleep(1)
         self.chrome.find_element(By.CSS_SELECTOR, ".sc-sjmh1l-4").click()
-        sleep(1)
         self.chrome.find_element(By.CSS_SELECTOR, ".sc-8ng12u-6").click()
-        sleep(1)
         self.chrome.find_element(By.CSS_SELECTOR, "a.sc-1hnuqjs-3:nth-child(2)").click()
-        sleep(2)
+        sleep(1)
         text = self.chrome.find_element(By.CSS_SELECTOR, ".sc-sjmh1l-4").text
         expected = "AT"#am schimbat tara din romania in austria
 
