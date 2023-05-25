@@ -98,7 +98,6 @@ class Login(unittest.TestCase):
             print("Nu mai exista butonul de login din modal dupa ce am apasat 'x'")
 
     def test_8_login_cu_succes(self): #am verificat daca la introducerea datelor corecte se poate loga pe pagina
-        sleep(1)
         element = WebDriverWait(self.chrome, 3).until(EC.visibility_of_element_located(self.FORM_AUTHENTICATION))
         element.click()
         element2 = WebDriverWait(self.chrome, 3).until(EC.visibility_of_element_located(self.FORM_AUTHENTICATION2))
@@ -108,16 +107,14 @@ class Login(unittest.TestCase):
         self.chrome.find_element(By.CSS_SELECTOR, "div.sc-4wvktd-3:nth-child(2) > label:nth-child(1)").send_keys(
             "parola")#am introdus parola corecta
         self.chrome.find_element(By.CSS_SELECTOR, ".sc-ovefx6-15 > span:nth-child(1)").click()
-        sleep(3)
     def test_9_cautare_produs_copii(self): #aici am verificat daca cauta un produs in categoria de copii a paginii
-        sleep(1)
         self.chrome.find_element(By.XPATH, "//a[@class='sc-1x1l7vk-1 ichvGd'][normalize-space()='Copii']").click()
         self.chrome.find_element(By.XPATH, "//*[@id='@aboutyou/router::SCROLL_ANCHOR']/div[2]/section/div[2]/section/div[1]/ul/li[1]/a/div[1]/img").click()
+        sleep(1)
         try:
             self.chrome.find_element(By.XPATH, "//img[@alt='Tommy Hilfiger Underwear']")
         except Exception as e:
             print("Brand-ul produsului nu apare pe pagina")
-        sleep(2)
 
     def test_10_schimbare_tara_site(self):#aici am verificat daca se poate schimba tara de origine a site-ului
         self.chrome.find_element(By.CSS_SELECTOR, ".sc-sjmh1l-4").click()
